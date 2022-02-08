@@ -22,6 +22,16 @@ resource "azurerm_resource_group" "thingly_app_rg" {
   }
 }
 
+resource "azurerm_availability_set" "thingly_app_aset" {
+  name                = "thingly-app-aset"
+  location            = azurerm_resource_group.thingly_app_rg.location
+  resource_group_name = azurerm_resource_group.thingly_app_rg.name
+
+  tags = {
+    environment = "production"
+  }
+}
+
 resource "azurerm_virtual_network" "thingly_app_vnet" {
   name          = "thingly-app-vnet"
   address_space = ["10.0.0.0/16"]
@@ -39,10 +49,17 @@ resource "azurerm_subnet" "internal" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_availability_set" "thingly_app_aset" {
-  name                = "thingly-app-aset"
+resource "azurerm_network_interface" "thingly_app_nic" {
+  count               = 4
+  name                = "thingly-app-nic-${count.index}"
   location            = azurerm_resource_group.thingly_app_rg.location
   resource_group_name = azurerm_resource_group.thingly_app_rg.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.internal.id
+    private_ip_address_allocation = "Dynamic"
+  }
 
   tags = {
     environment = "production"
