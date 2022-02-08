@@ -14,8 +14,16 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "thingly-app"
+resource "azurerm_resource_group" "thingly_app_rg" {
+  name     = "thingly-app-rg"
   location = "westus2"
   tags = {}
+}
+
+resource "azurerm_virtual_network" "thingly_app_vnet" {
+    name                = "thingly-app-vnet"
+    address_space       = ["10.0.0.0/16"]
+    location            = "westus2"
+    tags = {}
+    resource_group_name = azurerm_resource_group.thingly_app_rg.name
 }
