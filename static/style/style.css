@@ -1,4 +1,23 @@
-main h1 {
+/*
+ * palette from:  https://colorhunt.co/palette/13948786c6f4fff1ced29d2b
+ *
+ *   teal: #139487  rgb(19, 148, 135)
+ *   blue: #86C6F4  rgb(134, 198, 244)
+ *   yellow: #FFF1CE  rgb(255, 241, 206)
+ *   beige: #D29D2B  rgb(210, 157, 43)
+ *
+ */
+
+body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: green;
+    background-color: rgb(255, 241, 206);
+}
+
+main h1 {
+    font-size: 3.0em;
+    color: rgb(19, 148, 135);
+}
+
+main p {
+    font-size: 1.5em;
 }
