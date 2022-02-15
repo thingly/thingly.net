@@ -1,3 +1,4 @@
 venv/
 __pycache__/
 thingly.egg-info/
+.coverage
