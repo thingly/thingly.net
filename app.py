@@ -8,6 +8,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
 @app.route('/api/dice')
 @app.route('/api/dice/<int:n>')
 @app.route('/api/dice/<int:n>/<int:d>')
