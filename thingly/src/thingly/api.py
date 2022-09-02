@@ -2,6 +2,7 @@ import flask_restless
 
 from .models.thing import Thing
 
+
 def init_api(app, db):
     # Create the Flask-Restless API manager.
     manager = flask_restless.APIManager(app, session=db.session)

@@ -5,6 +5,7 @@ from .api import init_api
 from .db import db
 from .things import dice
 
+
 def create_app(test_config=None):
 
     # create and configure the app
@@ -45,6 +46,5 @@ def create_app(test_config=None):
     def roll_dice(n=1, d=6):
         # TODO protect against overly-large n, d
         return jsonify(dice.roll(n, d))
-
 
     return app
