@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template
 from .api import init_api
-from .db import db
+from .models import db
 from .things import dice
 
 
