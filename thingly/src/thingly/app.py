@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, jsonify, render_template
 from .api import init_api
 from .db import db
@@ -14,18 +12,12 @@ def create_app(test_config=None):
     # TODO externalize config
     app.config.from_mapping(
         SECRET_KEY='dev',
-        SQLALCHEMY_TRACK_MODIFICATIONS = False,  # get rid of warnings
-        SQLALCHEMY_DATABASE_URI=f'sqlite:///{os.path.join(app.instance_path, "thingly.sqlite")}',
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,  # get rid of warnings
+        SQLALCHEMY_DATABASE_URI='sqlite:///tmp/thingly.sqlite',
     )
 
     if test_config:
         app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     db.init_app(app)
 
