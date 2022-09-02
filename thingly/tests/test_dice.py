@@ -1,4 +1,6 @@
-from thingly import dice
+# TODO fix pytest import pathing
+from thingly.things import dice
+
 
 def test_dice():
     r = dice.roll(n=10,d=12)
