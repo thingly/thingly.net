@@ -16,8 +16,8 @@ def create_app(test_config=None):
         SQLALCHEMY_DATABASE_URI='sqlite:////tmp//thingly.sqlite',
     )
 
-    if test_config:  # pragma: no cover
-        app.config.from_mapping(test_config)
+    if test_config:
+        app.config.update(test_config)
 
     db.init_app(app)
     # TODO is this strictly a good idea?
