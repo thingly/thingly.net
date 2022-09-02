@@ -1,3 +1,4 @@
-* fix tests & test config
-* fix instance path
-* get rid of this damn instance thing
+* externalize configs (rather than hardcoding them)
+* alembic (database management)
+* limits! (e.g., max n and d for dice rolls)
+  * related: constants module? (or maybe that's in config?)
