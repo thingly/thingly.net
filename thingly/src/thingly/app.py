@@ -13,7 +13,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         SQLALCHEMY_TRACK_MODIFICATIONS=False,  # get rid of warnings
-        SQLALCHEMY_DATABASE_URI='sqlite:///tmp/thingly.sqlite',
+        SQLALCHEMY_DATABASE_URI='sqlite:////tmp//thingly.sqlite',
     )
 
     if test_config:
