@@ -1,4 +1,3 @@
-# TODO fix pytest import pathing
 from thingly.things import dice
 
 
