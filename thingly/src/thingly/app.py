@@ -9,18 +9,17 @@ from .things import dice
 def create_app(test_config=None):
 
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
 
     # TODO externalize config
     app.config.from_mapping(
         SECRET_KEY='dev',
+        SQLALCHEMY_TRACK_MODIFICATIONS = False,  # get rid of warnings
         SQLALCHEMY_DATABASE_URI=f'sqlite:///{os.path.join(app.instance_path, "thingly.sqlite")}',
     )
 
     if test_config:
         app.config.from_mapping(test_config)
-    else:
-        app.config.from_pyfile('config.py', silent=True)
 
     # ensure the instance folder exists
     try:
