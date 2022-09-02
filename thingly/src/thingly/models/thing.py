@@ -7,4 +7,4 @@ class Thing(db.Model):
 
     id = Column(Integer, primary_key=True)
     created_at = Column(DateTime, default=func.now())
-    last_modified = Column(DateTime, default=func.now(), last_modified=func.now())
+    last_modified = Column(DateTime, default=func.now(), onupdate=func.now())

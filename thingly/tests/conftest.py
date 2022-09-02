@@ -3,7 +3,7 @@ from thingly.app import create_app
 import pytest
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')  # TODO revisit scope if this gets slow
 def app():
     app = create_app(test_config={
         'SECRET_KEY': 'test',
@@ -14,12 +14,14 @@ def app():
 
     # TODO any shutdown/cleanup tasks here
 
+
 @pytest.fixture(scope='function')
 def db(app):
     with app.app_context():
-        yield app.db
-    
-    # TODO database cleanup
+        yield app.db  # we hung db off of app in app.py
+
+    # TODO database cleanup?
+
 
 @pytest.fixture
 def client(app):
