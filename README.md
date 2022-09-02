@@ -14,7 +14,14 @@ flask --debug run
 ```
 
 ## Testing
-Unit tests can be run using `pytest`. For manual inspection here are some useful curl commands:
+Unit tests can be run using `pytest`. To take a look at test coverage do:
+
+```shell
+coverage run -m pytest
+coverage report
+```
+
+### Useful curls
 
 ```shell
 # dice api - roll 4d6

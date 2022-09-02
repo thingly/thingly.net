@@ -20,6 +20,8 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     db.init_app(app)
+    # TODO is this strictly a good idea?
+    app.db = db
 
     with app.app_context():
         init_api(app, db)

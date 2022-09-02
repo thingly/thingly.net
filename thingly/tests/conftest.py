@@ -14,6 +14,13 @@ def app():
 
     # TODO any shutdown/cleanup tasks here
 
+@pytest.fixture(scope='function')
+def db(app):
+    with app.app_context():
+        yield app.db
+    
+    # TODO database cleanup
+
 @pytest.fixture
 def client(app):
     return app.test_client()
