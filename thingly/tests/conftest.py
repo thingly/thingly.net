@@ -1,4 +1,4 @@
-from thingly import create_app
+from thingly.app import create_app
 
 import pytest
 
