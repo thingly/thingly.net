@@ -1,17 +1,21 @@
 # Makefile design taken from https://rosszurowski.com/log/2022/makefiles
 FLASK=venv/bin/flask
-TOOLS=$(patsubst %, venv/bin/%, coverage pytest)
+TOOLS=$(patsubst %, venv/bin/%, coverage flake8 pytest)
 
 dev: $(FLASK) ## start up an auto-reloading dev server (default)
 	FLASK_APP=thingly/src/thingly/app.py $(FLASK) --debug run
 
-check: $(TOOLS) ## run unit test suite
-	venv/bin/coverage run -m pytest
+check: venv/bin/coverage venv/bin/pytest ## run unit test suite
+	@venv/bin/coverage run -m pytest
 .PHONY: check
 
 coverage: check ## report on unit test coverage
-	venv/bin/coverage report
+	@venv/bin/coverage report
 .PHONY: coverage
+
+lint: venv/bin/flake8 ## run code style checks
+	@$<
+.PHONY: lint
 
 venv: ## create a virtualenv
 	python3 -mvenv venv

@@ -7,6 +7,7 @@ This project uses a Makefile with a bunch of helpful targets:
   dev          start up an auto-reloading dev server (default)
   check        run unit test suite
   coverage     report on unit test coverage
+  lint         run code style checks
   venv         create a virtualenv
   clean        clean up intermediate files
   realclean    clean up *everything*
