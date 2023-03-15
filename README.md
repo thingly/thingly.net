@@ -1,24 +1,16 @@
 # thingly
 
 ## Getting Started
-You'll need a virtual environment with dependencies installed:
+This project uses a Makefile with a bunch of helpful targets:
 
-```shell
-source activate
 ```
-
-You can then start up a development server using:
-
-```shell
-flask --debug run
-```
-
-## Testing
-Unit tests can be run using `pytest`. To take a look at test coverage do:
-
-```shell
-coverage run -m pytest
-coverage report
+  dev          start up an auto-reloading dev server (default)
+  check        run unit test suite
+  coverage     report on unit test coverage
+  venv         create a virtualenv
+  clean        clean up intermediate files
+  realclean    clean up *everything*
+  help         show this help
 ```
 
 ### Useful curls

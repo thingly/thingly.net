@@ -1,7 +1,0 @@
-#!/bin/bash
-
-python3 -mvenv venv --prompt thingly && \
-source venv/bin/activate && \
-pip install -q -q -q -r requirements.txt -r requirements-dev.txt
-
-export FLASK_APP=thingly/src/thingly/app.py
