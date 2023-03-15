@@ -2,4 +2,5 @@ venv/
 __pycache__/
 thingly.egg-info/
 .coverage
+.pytest_cache/
 .vscode/
