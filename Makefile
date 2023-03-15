@@ -2,7 +2,9 @@
 FLASK=venv/bin/flask
 TOOLS=$(patsubst %, venv/bin/%, coverage flake8 pytest)
 
-dev: $(FLASK) ## start up an auto-reloading dev server (default)
+default: help
+
+dev: $(FLASK) ## start up an auto-reloading dev server
 	FLASK_APP=src/thingly/app.py $(FLASK) --debug run
 
 check: venv/bin/coverage venv/bin/pytest ## run unit test suite
