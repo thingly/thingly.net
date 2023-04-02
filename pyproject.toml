@@ -1,0 +1,17 @@
+[project]
+name = "thingly.net"
+
+[tool.coverage.run]
+branch = true
+source = ["src/thingly"]
+
+[tool.coverage.report]
+exclude_lines = ["if test_config:"]
+
+# TODO if flake8 ever supports pyproject.toml for config add this section
+# [tool.flake8]
+# see: .flake8 for flake8 configuration
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = "src"
