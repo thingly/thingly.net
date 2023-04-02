@@ -9,13 +9,6 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__)
 
-    # TODO externalize config
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,  # get rid of warnings
-        SQLALCHEMY_DATABASE_URI='sqlite:////tmp//thingly.sqlite',
-    )
-
     if test_config:
         app.config.update(test_config)
 
