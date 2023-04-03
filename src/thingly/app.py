@@ -20,8 +20,9 @@ def create_app():
 
     # TODO move this elsewhere
     @app.route("/")
+    @app.route("/index.html")
     def index():
-        return render_template("index.html")
+        return render_template("index.jinja")
 
     app.register_blueprint(diceapi, url_prefix="/api")
 

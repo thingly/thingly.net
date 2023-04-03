@@ -1,6 +1,6 @@
 # Makefile design taken from https://rosszurowski.com/log/2022/makefiles
 FLASK=venv/bin/flask
-TOOLS=$(patsubst %, venv/bin/%, black coverage flake8 isort pytest)
+TOOLS=$(patsubst %, venv/bin/%, black coverage djlint flake8 isort pytest)
 
 default: help
 
@@ -15,13 +15,17 @@ coverage: check ## report on unit test coverage
 	@venv/bin/coverage report
 .PHONY: coverage
 
-format: venv/bin/black ## auto-format all source code
-	@venv/bin/black -q src tests
+format: venv/bin/black venv/bin/isort venv/bin/djlint ## auto-format all source code
+	@venv/bin/black src tests
 	@venv/bin/isort src tests
+	@venv/bin/djlint --reformat src/thingly/templates
 .PHONY: format
 
-lint: venv/bin/flake8 ## run code style checks
-	@$<
+lint: venv/bin/flake8 venv/bin/djlint ## run code style checks
+	@venv/bin/flake8
+	@venv/bin/djlint src/thingly/templates
+	# note: if the above is causing too much pain even after reformatting, perhaps use:
+	# @venv/bin/djlint --warn src/thingly/templates
 .PHONY: lint
 
 venv: ## create a virtualenv
