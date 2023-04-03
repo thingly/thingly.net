@@ -1,12 +1,12 @@
-from thingly.models.thing import Thing
+from thingly.models.user import User
 
 
 def test_things(db):
-    thing = Thing()
-    db.session.add(thing)
+    user = User(name="Joe Smith")
+    db.session.add(user)
     db.session.commit()
 
     # basic checks to see whether fields got populated
-    assert thing.id is not None
-    assert thing.created_at is not None
-    assert thing.last_modified is not None
+    assert user.id is not None
+    assert user.created_at is not None
+    assert user.last_modified is not None

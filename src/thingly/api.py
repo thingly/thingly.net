@@ -1,6 +1,6 @@
 import flask_restless
 
-from .models.thing import Thing
+from .models.user import User
 
 
 def init_api(app, db):
@@ -8,4 +8,4 @@ def init_api(app, db):
     manager = flask_restless.APIManager(app, session=db.session)
 
     # Create API endpoints, which will be available at /api/<tablename>
-    manager.create_api(Thing, methods=['GET', 'POST', 'PUT', 'DELETE'])
+    manager.create_api(User, methods=["GET", "POST", "PUT", "DELETE"])

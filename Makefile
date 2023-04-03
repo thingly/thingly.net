@@ -16,8 +16,8 @@ coverage: check ## report on unit test coverage
 .PHONY: coverage
 
 format: venv/bin/black ## auto-format all source code
-	@venv/bin/black -q src
-	@venv/bin/isort src
+	@venv/bin/black -q src tests
+	@venv/bin/isort src tests
 .PHONY: format
 
 lint: venv/bin/flake8 ## run code style checks
