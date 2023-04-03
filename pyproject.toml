@@ -15,3 +15,4 @@ exclude_lines = ["if test_config:"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = "src"
+env = "FLASK_SQLALCHEMY_DATABASE_URI=sqlite:///:memory:"

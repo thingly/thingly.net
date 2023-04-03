@@ -1,11 +1,11 @@
 # Makefile design taken from https://rosszurowski.com/log/2022/makefiles
 FLASK=venv/bin/flask
-TOOLS=$(patsubst %, venv/bin/%, coverage flake8 pytest)
+TOOLS=$(patsubst %, venv/bin/%, black coverage flake8 isort pytest)
 
 default: help
 
-dev: $(FLASK) ## start up an auto-reloading dev server
-	FLASK_APP=src/thingly/app.py $(FLASK) --debug run
+dev: $(FLASK) .flaskenv ## start up an auto-reloading dev server
+	$(FLASK) --debug run
 
 check: venv/bin/coverage venv/bin/pytest ## run unit test suite
 	@venv/bin/coverage run -m pytest
@@ -14,6 +14,11 @@ check: venv/bin/coverage venv/bin/pytest ## run unit test suite
 coverage: check ## report on unit test coverage
 	@venv/bin/coverage report
 .PHONY: coverage
+
+format: venv/bin/black ## auto-format all source code
+	@venv/bin/black -q src tests
+	@venv/bin/isort src tests
+.PHONY: format
 
 lint: venv/bin/flake8 ## run code style checks
 	@$<
@@ -37,6 +42,8 @@ help: ## show this help
 
 $(FLASK): venv requirements.txt
 	venv/bin/pip install -r requirements.txt
+	@touch $@ $^ # prevent re-installing every time
 
-$(TOOLS): venv requirements-dev.txt
+$(TOOLS): venv requirements.txt requirements-dev.txt
 	venv/bin/pip install -r requirements.txt -r requirements-dev.txt
+	@touch $(TOOLS) $^ # prevent re-installing every time

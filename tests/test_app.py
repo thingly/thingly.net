@@ -2,14 +2,14 @@ import json
 
 
 def test_index(client):
-    response = client.get('/')
+    response = client.get("/")
 
     assert response is not None
     assert response.status_code == 200
 
 
 def test_dice(client):
-    response = client.get('/api/dice')
+    response = client.get("/api/dice")
 
     assert response is not None
     assert response.status_code == 200
@@ -21,7 +21,7 @@ def test_dice(client):
 
 
 def test_dice_n(client):
-    response = client.get('/api/dice/3')
+    response = client.get("/api/dice/3")
 
     assert response is not None
     assert response.status_code == 200
@@ -34,7 +34,7 @@ def test_dice_n(client):
 
 
 def test_dice_n_d(client):
-    response = client.get('/api/dice/5/12')
+    response = client.get("/api/dice/5/12")
 
     assert response is not None
     assert response.status_code == 200
