@@ -15,7 +15,7 @@ def app():
     # TODO any shutdown/cleanup tasks here
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def db(app):
     """Database fixture."""
     with app.app_context():
