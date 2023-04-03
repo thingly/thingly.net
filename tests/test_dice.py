@@ -2,7 +2,7 @@ from thingly.things import dice
 
 
 def test_dice():
-    r = dice.roll(n=10, d=12)
-    assert len(r) == 10
-    for roll in r:
+    rolls = dice.roll(n=10, d=12)
+    assert len(rolls) == 10
+    for roll in rolls:
         assert 1 <= roll <= 12

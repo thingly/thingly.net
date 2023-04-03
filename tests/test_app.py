@@ -14,8 +14,10 @@ def test_dice(client):
     assert response is not None
     assert response.status_code == 200
 
-    rolls = json.loads(response.data)
-    assert isinstance(rolls, list)
+    result = json.loads(response.data)
+    assert isinstance(result, dict)
+    assert 'data' in result
+    rolls = result['data']
     assert len(rolls) == 1
     assert 1 <= rolls[0] <= 6
 
@@ -26,8 +28,10 @@ def test_dice_n(client):
     assert response is not None
     assert response.status_code == 200
 
-    rolls = json.loads(response.data)
-    assert isinstance(rolls, list)
+    result = json.loads(response.data)
+    assert isinstance(result, dict)
+    assert 'data' in result
+    rolls = result['data']
     assert len(rolls) == 3
     for roll in rolls:
         assert 1 <= roll <= 6
@@ -39,8 +43,10 @@ def test_dice_n_d(client):
     assert response is not None
     assert response.status_code == 200
 
-    rolls = json.loads(response.data)
-    assert isinstance(rolls, list)
+    result = json.loads(response.data)
+    assert isinstance(result, dict)
+    assert 'data' in result
+    rolls = result['data']
     assert len(rolls) == 5
     for roll in rolls:
         assert 1 <= roll <= 12

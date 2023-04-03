@@ -1,8 +1,8 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, render_template
 
-from .api import init_api
-from .models import db
-from .things import dice
+from thingly.api import init_api
+from thingly.api.dice import diceapi
+from thingly.models import db
 
 
 def create_app():
@@ -23,12 +23,6 @@ def create_app():
     def index():
         return render_template("index.html")
 
-    # TODO move this elsewhere
-    @app.route("/api/dice")
-    @app.route("/api/dice/<int:n>")
-    @app.route("/api/dice/<int:n>/<int:d>")
-    def roll_dice(n=1, d=6):
-        # TODO protect against overly-large n, d
-        return jsonify(dice.roll(n, d))
+    app.register_blueprint(diceapi, url_prefix="/api")
 
     return app

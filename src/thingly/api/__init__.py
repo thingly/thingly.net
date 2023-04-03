@@ -1,6 +1,6 @@
 import flask_restless
 
-from .models.user import User
+from thingly.models.user import User
 
 
 def init_api(app, db):
