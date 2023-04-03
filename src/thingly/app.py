@@ -5,15 +5,12 @@ from .models import db
 from .things import dice
 
 
-def create_app(test_config=None):
+def create_app():
     # create and configure the app
     app = Flask(__name__)
 
     # pull config from env vars
     app.config.from_prefixed_env()
-
-    if test_config:
-        app.config.update(test_config)
 
     db.init_app(app)
 

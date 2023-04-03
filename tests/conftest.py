@@ -6,13 +6,7 @@ from thingly.app import db as thingly_db
 
 @pytest.fixture
 def app():
-    # TODO find a way to inject env vars, instead!
-    app = create_app(
-        test_config={
-            "SECRET_KEY": "test",
-            "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
-        }
-    )
+    app = create_app()
 
     yield app
 
