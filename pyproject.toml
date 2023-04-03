@@ -16,6 +16,14 @@ extension = "jinja"
 # [tool.flake8]
 # see: .flake8 for flake8 configuration
 
+# TODO remove when/if flask_restless ever provides type hints
+# TODO alternative: generate stubs? (seems like a hassle...)
+[[tool.mypy.overrides]]
+module = [
+    "flask_restless"
+]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = "src"

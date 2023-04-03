@@ -1,6 +1,6 @@
 # Makefile design taken from https://rosszurowski.com/log/2022/makefiles
 FLASK=venv/bin/flask
-TOOLS=$(patsubst %, venv/bin/%, black coverage djlint flake8 isort pytest)
+TOOLS=$(patsubst %, venv/bin/%, black coverage djlint flake8 isort mypy pytest)
 
 default: help
 
@@ -16,16 +16,23 @@ coverage: check ## report on unit test coverage
 .PHONY: coverage
 
 format: venv/bin/black venv/bin/isort venv/bin/djlint ## auto-format all source code
+	@echo "formatting source code..."
 	@venv/bin/black src tests
+	@echo "organizing imports..."
 	@venv/bin/isort src tests
+	@echo "formatting jinja templates..."
 	@venv/bin/djlint --reformat src/thingly/templates
 .PHONY: format
 
+# note: if djlint is erroring spuriously make it warn instead using:
+# @venv/bin/djlint --warn src/thingly/templates
 lint: venv/bin/flake8 venv/bin/djlint ## run code style checks
+	@echo "linting source code..."
 	@venv/bin/flake8
+	@echo "linting jinja templates..."
 	@venv/bin/djlint src/thingly/templates
-	# note: if the above is causing too much pain even after reformatting, perhaps use:
-	# @venv/bin/djlint --warn src/thingly/templates
+	#echo "static type checking..."
+	@venv/bin/mypy src
 .PHONY: lint
 
 venv: ## create a virtualenv

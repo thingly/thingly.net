@@ -4,7 +4,8 @@ from sqlalchemy import Column, DateTime, Integer, func
 db = SQLAlchemy()
 
 
-class BaseModel(db.Model):
+# TODO remove ignore when/if 'error: Name "db.Model" is not defined' gets fixt
+class BaseModel(db.Model):  # type: ignore
     """
     everything will get a unique id and creation/modification timestamp
     """
