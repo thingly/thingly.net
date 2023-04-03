@@ -5,7 +5,8 @@ from thingly.api.dice import diceapi
 from thingly.models import db
 
 
-def create_app():
+def create_app() -> Flask:
+    """Flask application factory"""
     # create and configure the app
     app = Flask(__name__)
 
@@ -21,7 +22,7 @@ def create_app():
     # TODO move this elsewhere
     @app.route("/")
     @app.route("/index.html")
-    def index():
+    def index() -> str:
         return render_template("index.jinja")
 
     app.register_blueprint(diceapi, url_prefix="/api")
