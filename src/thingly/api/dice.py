@@ -1,3 +1,4 @@
+"""thingly API module for dice rolls."""
 from flask import Blueprint
 
 from thingly.things import dice
@@ -9,11 +10,10 @@ diceapi = Blueprint("dice", __name__)
 @diceapi.route("/dice/<int:n>")
 @diceapi.route("/dice/<int:n>/<int:d>")
 def roll_dice(n: int = 1, d: int = 6) -> dict[str, list[int]]:
-    """
-    rolls `n` dice, each having `d` sides
+    """Roll `n` dice, each having `d` sides.
 
-    returns a list of the resulting rolls wrapped in an envelope
-    appropriate for an API response
+    Returns a list of the resulting rolls wrapped in an envelope
+    appropriate for an API response.
     """
     # TODO protect against overly-large n, d
     return {"data": dice.roll(n, d)}

@@ -1,3 +1,4 @@
+"""thingly app."""
 from flask import Flask, render_template
 
 from thingly.api import init_api
@@ -6,7 +7,7 @@ from thingly.models import db
 
 
 def create_app() -> Flask:
-    """Flask application factory"""
+    """Flask application factory."""
     # create and configure the app
     app = Flask(__name__)
 

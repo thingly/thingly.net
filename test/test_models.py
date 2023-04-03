@@ -1,7 +1,9 @@
+"""Test models."""
 from thingly.models.user import User
 
 
-def test_things(db):
+def test_user(db):
+    """Test user creation."""
     user = User(name="Joe Smith")
     db.session.add(user)
     db.session.commit()

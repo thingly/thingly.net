@@ -1,14 +1,22 @@
+"""Test thingly app."""
 import json
 
 
 def test_index(client):
+    """Test that our index page is returned."""
     response = client.get("/")
+
+    assert response is not None
+    assert response.status_code == 200
+
+    response = client.get("/index.html")
 
     assert response is not None
     assert response.status_code == 200
 
 
 def test_dice(client):
+    """Test default dice roll (1d6)."""
     response = client.get("/api/dice")
 
     assert response is not None
@@ -23,6 +31,7 @@ def test_dice(client):
 
 
 def test_dice_n(client):
+    """Test 3 rolls of default die (6-sided)."""
     response = client.get("/api/dice/3")
 
     assert response is not None
@@ -38,6 +47,7 @@ def test_dice_n(client):
 
 
 def test_dice_n_d(client):
+    """Test 5d12 dice roll."""
     response = client.get("/api/dice/5/12")
 
     assert response is not None
