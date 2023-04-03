@@ -1,6 +1,6 @@
 # Makefile design taken from https://rosszurowski.com/log/2022/makefiles
 FLASK=venv/bin/flask
-TOOLS=$(patsubst %, venv/bin/%, black coverage djlint flake8 isort mypy pytest)
+TOOLS=$(patsubst %, venv/bin/%, black coverage djlint flake8 isort mypy pyclean pytest)
 
 default: help
 
@@ -11,22 +11,22 @@ check: venv/bin/coverage venv/bin/pytest ## run unit test suite
 	@venv/bin/coverage run -m pytest
 .PHONY: check
 
-coverage: check ## report on unit test coverage
+coverage: check venv/bin/coverage ## report on unit test coverage
 	@venv/bin/coverage report
 .PHONY: coverage
 
 format: venv/bin/black venv/bin/isort venv/bin/djlint ## auto-format all source code
 	@echo "formatting source code..."
-	@venv/bin/black src tests
+	@venv/bin/black src test
 	@echo "organizing imports..."
-	@venv/bin/isort src tests
+	@venv/bin/isort src test
 	@echo "formatting jinja templates..."
 	@venv/bin/djlint --reformat src/thingly/templates
 .PHONY: format
 
 # note: if djlint is erroring spuriously make it warn instead using:
 # @venv/bin/djlint --warn src/thingly/templates
-lint: venv/bin/flake8 venv/bin/djlint ## run code style checks
+lint: venv/bin/flake8 venv/bin/djlint venv/bin/mypy ## run code style checks
 	@echo "linting source code..."
 	@venv/bin/flake8
 	@echo "linting jinja templates..."
@@ -38,7 +38,8 @@ lint: venv/bin/flake8 venv/bin/djlint ## run code style checks
 venv: ## create a virtualenv
 	python3 -mvenv venv
 
-clean: ## clean up intermediate files
+clean: venv/bin/pyclean ## clean up cached files
+	@venv/bin/pyclean src test
 .PHONY: clean
 
 realclean: clean ## clean up *everything*
