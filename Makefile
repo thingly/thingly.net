@@ -31,7 +31,7 @@ lint: venv/bin/flake8 venv/bin/djlint venv/bin/mypy ## run code style checks
 	@venv/bin/flake8
 	@echo "linting jinja templates..."
 	@venv/bin/djlint src/thingly/templates
-	#echo "static type checking..."
+	@echo "static type checking..."
 	@venv/bin/mypy --strict src
 .PHONY: lint
 
