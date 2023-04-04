@@ -11,3 +11,4 @@
 * logging
 * consider moving templates/static folders?
   * see: https://stackoverflow.com/questions/31002890/how-to-reference-a-html-template-from-a-different-directory-in-python-flask
+* message flashing? https://flask.palletsprojects.com/en/2.2.x/api/#flask.get_flashed_messages
